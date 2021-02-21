@@ -1,7 +1,15 @@
-#gamePlay {
+#gamePlayOne {
+  display: none;
+}
+
+#gamePlayTwo {
   display: none;
 }
 
 #scoreDisplay {
+  display: none;
+}
+
+#winner {
   display: none;
 }
