@@ -1,8 +1,8 @@
-# _{Application Name}_
+# _Pig Dice_
 
-#### _{Brief description of application}_
+#### _A dice rolling game. First to 100 points wins._ _February 21st 2021_
 
-#### By _**{List of contributors}**_
+#### By _**Garrett Brown, Juan Hasbun, Collin Chapman**_
 
 ## Technologies Used
 
