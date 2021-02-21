@@ -1,9 +1,8 @@
 //Business Logic Stuff
-function diceRoll(min, max) {
-  let min = Math.ceil(min);
-  let max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
+function diceRoll() {
+  return Math.floor(Math.random() * 6) + 1; 
 }
+
 
 function playerOne
 
@@ -14,8 +13,9 @@ function playerTwo
 $(document).ready(function() {
   $("#formOne").submit(function(event) {
     event.preventDefault();
-
     const playerOneName = $("input#playerOneName").val();
     const playerTwoName = $("input#playerTwoName").val();
+    $("#formOne").hide();
+    $("#gamePlay").show();
 
   });
