@@ -1,6 +1,7 @@
 //Business Logic Stuff
-function diceRoll() {
-  return Math.floor(Math.random() * 6) + 1; 
+function Gamer(playerName) {
+  this.playerName = playerName;
+  this.score = 0;
 }
 
 
@@ -10,9 +11,8 @@ function playerOne() {
     if (dice === 1) {
       return score = 0;
     } else {
-      score = playerScoreOne(dice, tempScoreOne);
-      checkScoreOne(score);
-      return score = tempScoreOne;
+      score = playerScoreOne(dice, oldScoreOne);
+      return score = newScoreOne;
     }
 };
 
@@ -23,14 +23,13 @@ function playerTwo() {
     return score = 0;
   } else {
     score = playerScoreTwo(dice, tempScoreTwo);
-    checkScoreTwo(score);
     return score = tempScoreTwo;
   }
 };
 
-function playerScoreOne(dice, tempScoreOne) {
-  tempScoreOne = tempScoreOne + dice;
-  return tempScoreOne;
+function playerScoreOne(dice, oldScoreOne) {
+  newScoreOne = oldScoreOne + dice;
+  return newScoreOne;
 };
 
 function playerScoreTwo(dice, tempScoreTwo) {
@@ -41,13 +40,29 @@ function playerScoreTwo(dice, tempScoreTwo) {
 function checkScoreOne(score) {
   if (score >= 100) {
     console.log("winner");
-  } else {}
+    $("#formOne").hide();
+    $("#gamePlayOne").hide();
+    $("#gamePlayTwo").hide();
+    $("#scoreDislay").hide();
+    $("#winnerTwo").hide();
+    $("#winnerOne").show();
+  } else {
+    return score;
+  }
 };
 
 function checkScoreTwo(score) {
   if (score >= 100) {
     console.log("winner");
-  } else {}
+    $("#formOne").hide();
+    $("#gamePlayOne").hide();
+    $("#gamePlayTwo").hide();
+    $("#scoreDislay").hide();
+    $("#winnerTwo").show();
+    $("#winnerOne").hide();
+  } else {
+    return score;
+  }
 };
 
 
@@ -55,23 +70,29 @@ function checkScoreTwo(score) {
 //Starting Scores:
 let playerOneScore = 0;
 let playerTwoScore = 0;
-let tempScoreOne = 0;
+let oldScoreOne = 0;
 let tempScoreTwo = 0;
+
+let pigDiceGamer = new Gamer();
 
 $(document).ready(function() {
   $("form#formOne").submit(function(event) {
     event.preventDefault();
     const playerOneName = $("input#playerOneName").val();
     const playerTwoName = $("input#playerTwoName").val();
+    $(".playerOneName").text(playerOneName);
+    $(".playerTwoName").text(playerTwoName);
     $("#formOne").hide();
     $("#gamePlayOne").show();
-    $("#scoreDisplay").show();
+    $("#scoreDisplay").show(); 
 
-    
+    let newGamer = new Gamer(playerOneName)
   });
+
   $("#rollDiceOne").click(function(event) {
     event.preventDefault();
-    playerOne();
+    let score = playerOne();
+    checkScoreOne(score);
   });
 
   $("#rollDiceTwo").click(function(event) {
@@ -111,6 +132,6 @@ $(document).ready(function() {
     $("#formOne").show();
     $("#gamePlayOne").hide();
     $("#gamePlayTwo").hide();
-    $("#scoreDislay").hide();
+    $("#scoreDisplay").hide();
   });
 });
