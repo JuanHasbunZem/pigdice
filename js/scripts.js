@@ -1,80 +1,12 @@
 //Business Logic Stuff
-function Gamer(playerName) {
-  this.playerName = playerName;
+function Gamer(name) {
+  this.name = name;
+  this.tempScore = 0;
   this.score = 0;
 }
 
-
-function playerOne() {
-  let score = 0;
-  let dice = diceRoll();
-    if (dice === 1) {
-      return score = 0;
-    } else {
-      score = playerScoreOne(dice, oldScoreOne);
-      return score = newScoreOne;
-    }
-};
-
-function playerTwo() {
-  let score = 0;
-  let dice = diceRoll();
-  if (dice === 1) {
-    return score = 0;
-  } else {
-    score = playerScoreTwo(dice, tempScoreTwo);
-    return score = tempScoreTwo;
-  }
-};
-
-function playerScoreOne(dice, oldScoreOne) {
-  newScoreOne = oldScoreOne + dice;
-  return newScoreOne;
-};
-
-function playerScoreTwo(dice, tempScoreTwo) {
-  tempScoreTwo = tempScoreTwo + dice;
-  return tempScoreTwo;
-};
-
-function checkScoreOne(score) {
-  if (score >= 100) {
-    console.log("winner");
-    $("#formOne").hide();
-    $("#gamePlayOne").hide();
-    $("#gamePlayTwo").hide();
-    $("#scoreDislay").hide();
-    $("#winnerTwo").hide();
-    $("#winnerOne").show();
-  } else {
-    return score;
-  }
-};
-
-function checkScoreTwo(score) {
-  if (score >= 100) {
-    console.log("winner");
-    $("#formOne").hide();
-    $("#gamePlayOne").hide();
-    $("#gamePlayTwo").hide();
-    $("#scoreDislay").hide();
-    $("#winnerTwo").show();
-    $("#winnerOne").hide();
-  } else {
-    return score;
-  }
-};
-
-
 // UI Logic Stuff
 //Starting Scores:
-let playerOneScore = 0;
-let playerTwoScore = 0;
-let oldScoreOne = 0;
-let tempScoreTwo = 0;
-
-let pigDiceGamer = new Gamer();
-
 $(document).ready(function() {
   $("form#formOne").submit(function(event) {
     event.preventDefault();
@@ -86,7 +18,8 @@ $(document).ready(function() {
     $("#gamePlayOne").show();
     $("#scoreDisplay").show(); 
 
-    let newGamer = new Gamer(playerOneName)
+    let playerOne = new Gamer(playerOneName);
+    let playerTwo = new Gamer(playerTwoName);
   });
 
   $("#rollDiceOne").click(function(event) {
