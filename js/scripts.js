@@ -5,6 +5,29 @@ function Gamer(name) {
   this.score = 0;
 }
 
+function diceRoll() {
+  return Math.floor(Math.random() * 6) + 1; 
+}
+
+Gamer.prototype.checkScore(function(score) {
+  if (Gamer.score >= 100) {
+    $("#gamePlayOne").hide();
+    $("#gamePlayTwo").hide();
+    $("#playOneWin").show();
+  } else {
+    Gamer.prototype.tempScore(score);
+  }
+}
+
+Gamer.prototype.tempScore(function(dice) {
+  this.tempScore = tempScore + dice;
+}
+
+Gamer.prototype.score(function(tempScore)) {
+  this.score = Gamer.tempScore;
+}
+
+
 // UI Logic Stuff
 //Starting Scores:
 $(document).ready(function() {
@@ -24,35 +47,25 @@ $(document).ready(function() {
 
   $("#rollDiceOne").click(function(event) {
     event.preventDefault();
-    let score = playerOne();
-    checkScoreOne(score);
-  });
-
-  $("#rollDiceTwo").click(function(event) {
-    event.preventDefault();
-    playerTwo();
+    let rolled = rollDice();
+    if (rolled = 1) {
+      playerOne.score = 0;
+      playerOne.tempScore = 0;
+      playerOne.prototype.score(0);
+    } else {
+      playerOne.prototype.tempScore(rolled);
+      playerOne.prototype.checkScore(playerOne.score);
   });
 
   $("#holdDiceOne").click(function(event) {
     event.preventDefault();
-    playerScoreOne();
-    checkScoreOne();
+    playerOne.prototype.score(playerOne.tempScore);
     $("#gamePlayOne").hide();
     $("#gamePlayTwo").show();
-    tempScore = 0;
+    playerOne.tempScore = 0;
   });
 
-  $("#holdDiceTwo").click(function(event) {
-    event.preventDefault();
-    playerScoreTwo();
-    checkScoreTwo();
-    $("#gamePlayOne").show();
-    $("#gamePlayTwo").hide();
-    tempScore = 0;
-  });
-    
-
-  $("#giveUpOne").click(function(event) {
+    $("#giveUpOne").click(function(event) {
     event.preventDefault();
     $("#formOne").show();
     $("#gamePlayOne").hide();
@@ -60,11 +73,3 @@ $(document).ready(function() {
     $("#scoreDisplay").hide();
   });
   
-  $("#giveUpTwo").click(function(event) {
-    event.preventDefault();
-    $("#formOne").show();
-    $("#gamePlayOne").hide();
-    $("#gamePlayTwo").hide();
-    $("#scoreDisplay").hide();
-  });
-});
