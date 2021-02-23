@@ -9,7 +9,7 @@ function diceRoll() {
   return Math.floor(Math.random() * 6) + 1; 
 }
 
-Gamer.prototype.checkScore(function(score) {
+Gamer.prototype.checkScore = function(score) {
   if (Gamer.score >= 100) {
     $("#gamePlayOne").hide();
     $("#gamePlayTwo").hide();
@@ -19,11 +19,11 @@ Gamer.prototype.checkScore(function(score) {
   }
 }
 
-Gamer.prototype.tempScore(function(dice) {
+Gamer.prototype.tempScore = function(dice) {
   this.tempScore = tempScore + dice;
 }
 
-Gamer.prototype.score(function(tempScore)) {
+Gamer.prototype.score = function(scored) {
   this.score = Gamer.tempScore;
 }
 
@@ -48,13 +48,15 @@ $(document).ready(function() {
   $("#rollDiceOne").click(function(event) {
     event.preventDefault();
     let rolled = rollDice();
+    let scored = playerOne.score;
     if (rolled = 1) {
       playerOne.score = 0;
       playerOne.tempScore = 0;
       playerOne.prototype.score(0);
     } else {
       playerOne.prototype.tempScore(rolled);
-      playerOne.prototype.checkScore(playerOne.score);
+      playerOne.prototype.checkScore(scored);
+    }
   });
 
   $("#holdDiceOne").click(function(event) {
@@ -72,4 +74,4 @@ $(document).ready(function() {
     $("#gamePlayTwo").hide();
     $("#scoreDisplay").hide();
   });
-  
+});
